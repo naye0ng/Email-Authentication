@@ -60,6 +60,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_swagger',
+    'accounts',
+    # 'users',
+
 ]
 
 MIDDLEWARE = [
@@ -96,6 +101,7 @@ WSGI_APPLICATION = 'rest_auth.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 # mac : mysql.server start
+# create database django_auth default character set UTF8;
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -158,3 +164,10 @@ EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# # REST FRAMEWORK
+# REST_FRAMEWORK = { 
+#     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' 
+#     }
+
+AUTH_USER_MODEL = 'accounts.User'
