@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os, json
+import os, json, datetime
 from django.core.exceptions import ImproperlyConfigured
  
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -62,8 +62,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
-    'accounts',
-    # 'users',
+    'authentication',
 
 ]
 
@@ -155,6 +154,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Django Default User & authentication
+AUTH_USER_MODEL = 'authentication.User'
+AUTHENTICATION_BACKENDS = ['tokens.backends.CustomUserBackend']
 
 # Email Password
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -165,9 +167,13 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-# # REST FRAMEWORK
-# REST_FRAMEWORK = { 
-#     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' 
-#     }
-
-AUTH_USER_MODEL = 'accounts.User'
+# Redis Cache
+CACHES = {  
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379", # 1번 DB
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
