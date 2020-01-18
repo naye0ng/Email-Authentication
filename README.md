@@ -19,11 +19,11 @@
 [POST] /auth/authentiaction/
 ```
 ```json
-[header]
+// header
 { "Content-Type": "application/json" }
 ```
 ```json
-[body]
+// body
 {
     "email": "{email}",
     "password1": "{password}",
@@ -72,11 +72,11 @@
 ```
 
 ```json
-[header]
+// header
 { "Content-Type": "application/json" }
 ```
 ```json
-[body]
+// body
 {
     "email": "{email}",
     "password": "{password}",
@@ -95,6 +95,7 @@
 ```
 
 <br/>
+
 ### II. 토큰 유효성 검사
 
 #### Request
@@ -104,7 +105,7 @@
 ```
 
 ```json
-[header]
+// header
 {
   "Content-Type": "application/json",
   "Authorization": "{access_token}"
@@ -128,7 +129,7 @@
 ```
 
 ```json
-[header]
+// header
 {
   "Content-Type": "application/json",
   "Authorization": "{refresh_token}"
