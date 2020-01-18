@@ -28,19 +28,20 @@ def authentiaction(request) :
                     password=request.POST.get('password1')
                 )
                 user.save()
-            
+    
             # token 생성하고 메일 보내기
             user = User.objects.get(email=email)
             uid64 = urlsafe_base64_encode(force_bytes(user.pk)).encode().decode()
             token = account_activation_token.make_token(user)
             url = request.build_absolute_uri()
 
-            # 2분동안 redis에 uid와 token 저장하기
+            # 1분동안 redis에 uid와 token 저장하기
             cache.set(uid64, token, timeout=60) 
             
             email_title = '회원가입 인증 메일입니다.'
             email_msg = url+'?token='+token+'&uid64='+uid64
             return send_email(email, email_title, email_msg)
+        return json_response('회원가입에 실패했습니다.')
 
     # [2] GET : 이메일 인증 및 계정 활성화
     uid64 = request.GET.get('uid64')

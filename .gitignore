@@ -1,5 +1,6 @@
 ### Settings ###
-Requirements/
+db.json
+email.json
 
 ### Django ###
 *.log
@@ -147,3 +148,9 @@ Temporary Items
 .apdisk
 
 # End of https://www.gitignore.io/api/macos,django
+
+### Redis ###
+# Ignore redis binary dump (dump.rdb) files
+
+*.rdb
+
